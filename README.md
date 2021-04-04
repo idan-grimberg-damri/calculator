@@ -1,2 +1,5 @@
-Left to handle Deletion.
+Left to:
+* Handle Deletion
+* style
+
 
