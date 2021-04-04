@@ -23,7 +23,8 @@ let States = {
 }
 
 let screenVal = '', secondOperand = '', currOp = '', currState = States.start, canUseDecimalPoint = true;
-const digitClass = 'digit', opClass = 'op', evalCalss = 'evaluation', decPointClass = 'dec-point', otherClass = 'other';
+const digitClass = 'digit', opClass = 'op', evalCalss = 'evaluation', decPointClass = 'dec-point',
+    resetClass = 'reset', deleteClass = 'delete';
 const container = document.querySelector('.container');
 const screen = container.querySelector('#screen');
 
@@ -34,9 +35,10 @@ function onClick(event) {
     switch (event.target.className) {
         case digitClass: shouldDisplay = handleDigitClick(event.target.textContent); break;
         case opClass: shouldDisplay = handleOpClick(event.target.id); break;
-        case evalCalss: shouldDisplay = handleEvaluation(); break;
-        case decPointClass: shouldDisplay = handleDecPoint(); break;
-        case otherClass: shouldDisplay = handleOtherClick(event.target.id); break;
+        case evalCalss: shouldDisplay = handleEvaluationClick(); break;
+        case decPointClass: shouldDisplay = handleDecPointClick(); break;
+        case resetClass: shouldDisplay = handleResetClick(); break;
+        case deleteClass: shouldDisplay = handledeleteClick(); break;
         default: shouldDisplay = false;
     }
     if (shouldDisplay)
@@ -44,9 +46,63 @@ function onClick(event) {
 
 }
 
-function handleDigitClick(digitStr) {
-    if (screenVal === '0' && screenVal.length === 1 && (currState === States.firstNumInstance || currState === States.secondNumInstance))
+function handledeleteClick() {
+    if (!screenVal)
         return false;
+
+    if (screenVal[screenVal.length - 1] === '.')
+        canUseDecimalPoint = true;
+
+    screenVal = screenVal.slice(0, -1);
+    isLastCharDecPoint = screenVal[screenVal.length - 1] === '.';
+
+    switch (currState) {
+        case States.decPointStart:
+        case States.decPointFirstNumInstance:
+        case States.decPointEvaluation:
+            currState = States.firstNumInstance;
+            break;
+
+        case States.firstNumInstance:
+            if (isLastCharDecPoint)
+                currState = States.decPointFirstNumInstance;
+            break;
+
+        case States.firstOpInstance:
+            currState = States.firstNumInstance;
+            if (screenVal.includes('.')) {
+                canUseDecimalPoint = false;
+                if (isLastCharDecPoint)
+                    currState = States.decPointFirstNumInstance;
+
+            }
+            break;
+
+        case States.decPointFirstOpInstance:
+        case States.decPointSecondOpInstance:
+            currState = States.secondNumInstance;
+            break;
+        
+        case States.secondNumInstance:
+            if (isLastCharDecPoint)
+                currState = States.decPointSecondNumInstance;
+            break;
+        
+        case States.secondOpInstance:
+        case States.evaluation:
+            screenVal = '0';
+            currState = States.start();
+            break;
+
+    }
+
+    return true;
+}
+
+function handleDigitClick(digitStr) {
+    if (screenVal === '0' && (currState === States.firstNumInstance || currState === States.secondNumInstance))    
+            return false;
+     
 
     screenVal += digitStr;
 
@@ -56,6 +112,7 @@ function handleDigitClick(digitStr) {
 
     return true;
 }
+
 function handleNonDecPointStates(digitStr) {
     switch (currState) {
         case States.start:
@@ -100,7 +157,11 @@ function handleDecPointStates() {
     }
 }
 
+
 function handleOpClick(opId) {
+    if (isEmptyScreen())
+        return false;
+
     let shouldUpdateScreen = false, isEvalSucceeded = true, prevDecPointUsedVal = canUseDecimalPoint;
     canUseDecimalPoint = true;
     // TODO - Highlight op button
@@ -125,8 +186,8 @@ function handleOpClick(opId) {
     return shouldUpdateScreen;
 }
 
-function handleEvaluation() {
-    if (currState === States.secondNumInstance) {
+function handleEvaluationClick() {
+    if (currState === States.secondNumInstance && !isEmptyScreen()) {
         currState = States.evaluation;
         evaluate();
         canUseDecimalPoint = true;
@@ -136,16 +197,13 @@ function handleEvaluation() {
     return false;
 }
 
-function handleOtherClick(otherId) {
-    if (otherId === 'reset') {
-        currState = States.start;
-        screenVal = '0';
-        return true;
-    }
-    return false;
+function handleResetClick() {
+    currState = States.start;
+    screenVal = '0';
+    return true;
 }
 
-function handleDecPoint() {
+function handleDecPointClick() {
     if (!canUseDecimalPoint)
         return false;
 
@@ -199,4 +257,8 @@ function evaluate() {
     screenVal = parseFloat(screenVal.toFixed(3));
     return true;
 
+}
+
+function isEmptyScreen() {
+    return screenVal === '';
 }
