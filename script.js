@@ -47,7 +47,7 @@ function onClick(event) {
 }
 
 function handledeleteClick() {
-    if (!screenVal)
+    if (screenVal === '')
         return false;
 
     if (screenVal[screenVal.length - 1] === '.')
@@ -91,7 +91,7 @@ function handledeleteClick() {
         case States.secondOpInstance:
         case States.evaluation:
             screenVal = '0';
-            currState = States.start();
+            currState = States.start;
             break;
 
     }
@@ -254,7 +254,7 @@ function evaluate() {
 
     }
 
-    screenVal = parseFloat(screenVal.toFixed(3));
+    screenVal = parseFloat(screenVal.toFixed(3)).toString();
     return true;
 
 }
