@@ -4,7 +4,7 @@ Left to:
 
 The solution is based on this finite state diagram that I built for this project:
 
-![calculator finite state diagram](https://i.imgur.com/q4YnOwU.png)
+![calculator finite state diagram](https://i.imgur.com/Y24XDUj.png)
 
 
 States
