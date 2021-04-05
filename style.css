@@ -1,18 +1,39 @@
+:root{
+    --body-bc: rgb(241, 240, 240);
+    --container-bc: rgb(59, 59, 59);
+    --container-box-shadow-color: rgb(37, 37, 37);
+    --screen-bc: rgb(211, 242, 246);
+    --middle-btns-bc: rgb(233, 231, 231);
+    --op-bc: rgb(143, 214, 143);
+    --top-btns-bc: rgb(223, 178, 119);
+    --evaluation-btn-bc: rgb(150, 118, 167);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
 body{
     height: 100%;
+    background-color: var(--body-bc);
 }
 
 .container{
     max-width: 380px;
     margin: 25px auto;
     padding: 20px;
-    background-color: rgb(59, 59, 59);
+    background-color: var(--container-bc);
     border-radius: 10px;
+    box-shadow: 1px 1px 4px var(--container-box-shadow-color);
 }
 
+
 .screen{
-    background-color: rgb(211, 242, 246);
+    background-color: var(--screen-bc);
     text-align: right;
     word-wrap: break-word;
     word-break: break-all;
@@ -35,41 +56,42 @@ body{
     "d7 d8 d9 multiply"
     "d4 d5 d6 subtract"
     "d1 d2 d3 add"
-    "d0 d0 dot equals";
+    "d0 d0 dec-point evaluation";
 
 }
 
 .grid-container > button{
     border-radius: 5px;
+    font-size: 2em;
     outline: none;
     
     
 }
 
-.digit, .dec-point, .evaluation{
-    background-color: rgb(233, 231, 231);
+.digit, .dec-point {
+    background-color: var(--middle-btns-bc);
     
 }
 .op{
-    background-color: rgb(143, 214, 143);
-    border-color: rgb(143, 214, 143);
+    background-color: var(--op-bc);
+    border-color: var(--op-bc);
     font-weight: bold;
 }
 .reset, .delete{
-    border-color: rgb(223, 178, 119);
-    background-color: rgb(223, 178, 119);
+    background-color: var(--top-btns-bc);
+    border-color: var(--top-btns-bc);
     font-weight: bold;
     
 }
 
 .evaluation{
-    background-color: rgb(150, 118, 167);
-    border-color: rgb(150, 118, 167);
+    background-color: var(--evaluation-btn-bc);
+    border-color: var(--evaluation-btn-bc);
     font-weight: bold;
 }
 
-#reset{grid-area: reset;}
-#delete{grid-area: delete;}
+.reset{grid-area: reset;}
+.delete{grid-area: delete;}
 #d0{grid-area: d0;}
 #d1{grid-area: d1;}
 #d2{grid-area: d2;}
@@ -84,7 +106,7 @@ body{
 #mult{grid-area: mult;}
 #sub{grid-area: sub;}
 #add{grid-area: add;}
-#equals{grid-area: equals;}
-#dot{grid-area: dot;}
+.evaluation{grid-area: evaluation;}
+.dec-point{grid-area: dec-point;}
 
 
