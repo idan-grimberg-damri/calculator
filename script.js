@@ -46,13 +46,16 @@ function onClick(event) {
         default: shouldDisplay = false;
     }
     // If the user clicked on a valid button in the current state of the computation then update the display.
-    if (shouldDisplay)
+    if (shouldDisplay){
         screen.textContent = screenVal;
-    // If the digits are overfllwing the screen then ommit the last digit and show an alert.
-    if (screen.scrollHeight > screen.clientHeight){
-        screen.textContent = screenVal.slice(0, -1);
-        alert('Too many digits. Continuing with previous number: ' + screenVal);
+
+        // If the digits are overfllwing the screen then ommit the last digit and show an alert.
+        if (screen.scrollHeight > screen.clientHeight){
+            screen.textContent = screenVal.slice(0, -1);
+            alert('Too many digits. Continuing with previous number: ' + screenVal);
+        }
     }
+    
 
 }
 /**
