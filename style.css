@@ -7,6 +7,8 @@
     --op-bc: rgb(143, 214, 143);
     --top-btns-bc: rgb(223, 178, 119);
     --evaluation-btn-bc: rgb(150, 118, 167);
+    --btns-border-color: rgba(0, 0, 0, 0.5);
+
 }
 
 *,
@@ -38,8 +40,8 @@ body{
     word-wrap: break-word;
     word-break: break-all;
     border-radius: 5px;
-    padding: 10px 20px 10px 10px;
-    font-size: 3em;
+    padding: 10px 20px 10px 20px;
+    font-size: 2.3em;
     min-height: 100px;
     max-height: 100px;
     max-lines: 2;
@@ -61,11 +63,20 @@ body{
 }
 
 .grid-container > button{
+    border: 2px solid var(--btns-border-color);
     border-radius: 5px;
     font-size: 2em;
+    cursor: pointer;   
     outline: none;
-    
-    
+}
+
+.grid-container > button:hover{
+    border-color: rgb(180, 180, 180);
+
+}
+.grid-container > button:active{
+   border-color: white ;
+
 }
 
 .digit, .dec-point {
