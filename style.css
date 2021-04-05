@@ -53,6 +53,7 @@ body{
     gap: 10px;
     box-sizing: border-box;
     margin-top: 30px;
+    grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
     "reset reset delete divide"
     "d7 d8 d9 multiply"
