@@ -1,33 +1,73 @@
+
+body{
+    height: 100%;
+}
+
 .container{
+    max-width: 380px;
+    margin: 25px auto;
+    padding: 20px;
+    background-color: rgb(59, 59, 59);
+    border-radius: 10px;
+}
+
+.screen{
+    background-color: rgb(211, 242, 246);
+    text-align: right;
+    word-wrap: break-word;
+    word-break: break-all;
+    border-radius: 5px;
+    padding: 10px 20px 10px 10px;
+    font-size: 3em;
+    min-height: 100px;
+    max-height: 100px;
+    max-lines: 2;
+    overflow: hidden;
+}
+
+.grid-container{
     display: grid;
-    height: 500px;
-    width: 500px;
-    margin: auto;
-    background-color: rgb(114, 116, 114);
-    border: 3px solid black;
+    gap: 10px;
+    box-sizing: border-box;
+    margin-top: 30px;
     grid-template-areas:
-    "screen screen screen screen"
-    "screen screen screen screen"
     "reset reset delete divide"
     "d7 d8 d9 multiply"
     "d4 d5 d6 subtract"
     "d1 d2 d3 add"
     "d0 d0 dot equals";
-    
-    
 
 }
-#screen{
-    display: flex;
-    text-align: right;
-    word-break: break-all;
-    grid-area: screen;
-    align-items: center;
-    justify-content: right;
-    padding-right: 10px;
-    padding-left: 20px;
-    font-size:5em;
+
+.grid-container > button{
+    border-radius: 5px;
+    outline: none;
+    
+    
 }
+
+.digit, .dec-point, .evaluation{
+    background-color: rgb(233, 231, 231);
+    
+}
+.op{
+    background-color: rgb(143, 214, 143);
+    border-color: rgb(143, 214, 143);
+    font-weight: bold;
+}
+.reset, .delete{
+    border-color: rgb(223, 178, 119);
+    background-color: rgb(223, 178, 119);
+    font-weight: bold;
+    
+}
+
+.evaluation{
+    background-color: rgb(150, 118, 167);
+    border-color: rgb(150, 118, 167);
+    font-weight: bold;
+}
+
 #reset{grid-area: reset;}
 #delete{grid-area: delete;}
 #d0{grid-area: d0;}

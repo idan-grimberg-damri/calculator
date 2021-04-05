@@ -7,7 +7,7 @@ let Calculator = {
     divide:   (x, y) => { return (y !== 0 ? x / y : alert("Can't divide by zero.")) },
     operate:  (op, x, y) => { return Calculator[op](x, y); }
 }
-// All states in the calculator finite state diagram.
+// All states in the calculator's finite state diagram.
 let States = {
     start: 'S',
     firstNumInstance: 'N1',
@@ -28,10 +28,10 @@ let screenVal = '', secondOperand = '', currOp = '', currState = States.start, c
 const digitClass = 'digit', opClass = 'op', evalCalss = 'evaluation', decPointClass = 'dec-point',
     resetClass = 'reset', deleteClass = 'delete';
 
-const container = document.querySelector('.container');
-const screen = container.querySelector('#screen');
+const gridContainer = document.querySelector('.container');
+const screen = document.querySelector('.screen');
 
-container.addEventListener('click', onClick, false);
+gridContainer.addEventListener('click', onClick, false);
 
 // Handle UI clicks.
 function onClick(event) {
