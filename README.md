@@ -1,3 +1,5 @@
+[Live Demo](https://idan-grimberg-damri.github.io/calculator/)
+
 The solution is based on this finite state diagram that I built for this project:
 
 ![calculator finite state diagram](https://i.imgur.com/Y24XDUj.png)
