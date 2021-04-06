@@ -232,6 +232,7 @@ function handleEvaluationClick() {
 function handleResetClick() {
     currState = States.start;
     screenVal = '0';
+    canUseDecimalPoint = true;
     return true;
 }
 /**
