@@ -1,7 +1,3 @@
-Left to:
-* Handle Deletion.
-* style.
-
 The solution is based on this finite state diagram that I built for this project:
 
 ![calculator finite state diagram](https://i.imgur.com/Y24XDUj.png)
