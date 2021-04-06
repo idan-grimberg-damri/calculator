@@ -75,6 +75,7 @@ function handledeleteClick() {
 
         case States.decPointFirstOpInstance:
         case States.decPointSecondOpInstance:
+        case States.decPointSecondNumInstance:
                 currState = States.secondNumInstance;
                 break;
 
@@ -205,6 +206,7 @@ function handleOpClick(opId) {
                 currOp = opId;
                 currState = States.secondOpInstance;
             }
+            break;
         default: canUseDecimalPoint = prevDecPointUsedVal;
 
     }
