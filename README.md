@@ -1,4 +1,4 @@
-[Live Demo](https://idan-grimberg-damri.github.io/calculator/)
+[Live Demo](https://idandam.github.io/calculator/)
 
 The solution is based on this finite state diagram that I built for this project:
 
